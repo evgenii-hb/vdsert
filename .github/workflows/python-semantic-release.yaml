@@ -21,9 +21,9 @@ jobs:
       with:
         poetry-version: "1.5.1"
     - name: Install dependencies and run tests with coverage
-        run: |
-          poetry install --only=main,test
-          poetry run pytest
+      run: |
+        poetry install --only=main,test
+        poetry run pytest
 
   release:
     runs-on: ubuntu-latest
