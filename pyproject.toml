@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "~3.10"
-structlog = "^2.2.1"
+structlog = "^23.2.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"
@@ -18,3 +18,9 @@ pytest = "^7.4.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.semantic_release]
+build_command = "poetry build"
+version_variables = ["vdsert/__init__.py:version"]
+version_toml = ["pyproject.toml:tool.poetry.version"]

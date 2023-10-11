@@ -1,12 +1,12 @@
 import pytest
+
 import vdsert
 
-pytest.fixture
 
-
+@pytest.fixture
 def foo():
-    return "foo"
+    return "bar"
 
 
 def test_all(foo):
-    assert vdsert.foo == foo
+    assert vdsert.foo() == foo
