@@ -21,21 +21,21 @@ jobs:
       uses: Gr1N/setup-poetry@v8
       with:
         poetry-version: "1.5.1"
+    
     - name: Install dependencies and run tests with coverage
       run: |
         poetry install --only=main,test
         poetry run pytest
 
-  release:
+  semantic-release:
     runs-on: ubuntu-latest
-    concurrency: release
     permissions:
-      id-token: write
-      contents: write  # to create GitHub Releases
-    needs: test
-
+      contents: write # to be able to publish a GitHub release
+      pull-requests: write # to be able to comment on released pull requests
+    needs: [ test ]
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
@@ -48,8 +48,15 @@ jobs:
       uses: Gr1N/setup-poetry@v8
       with:
         poetry-version: "1.5.1"
-
-    - name: Python Semantic Release
-      uses: python-semantic-release/python-semantic-release@master
+    
+    - name: Create Github semantic release
+      uses: cycjimmy/semantic-release-action@v3
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        semantic_version: 18
+        extra_plugins: |
+          @semantic-release/git@10.0.1
+          @semantic-release/changelog@6.0.1
+      run: |
+        poetry build

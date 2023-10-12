@@ -11,6 +11,7 @@ structlog = "^23.2.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"
+python-semantic-release = "^8.1.1"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.0"
@@ -19,8 +20,7 @@ pytest = "^7.4.0"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
-
-[tool.semantic_release]
-build_command = "poetry build"
-version_variables = ["vdsert/__init__.py:version"]
-version_toml = ["pyproject.toml:tool.poetry.version"]
+[[tool.poetry_bumpversion.replacements]]
+files = ["vdsert/__init__.py"]
+search = 'version = "{current_version}"'
+replace = 'version = "{new_version}"'
