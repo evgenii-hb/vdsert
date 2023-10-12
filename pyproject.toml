@@ -28,8 +28,9 @@ tag_format = "v{version}"
 major_on_zero = true
 assets = []
 build_command = """
+    export POETRY_HOME=/opt/poetry
     curl -sSL https://install.python-poetry.org | POETRY_VERSION=1.5.1 python3 -
-    poetry build
+    $POETRY_HOME/bin/poetry build
 """
 version_variables = ["vdsert/__init__.py:version"]
 version_toml = ["pyproject.toml:tool.poetry.version"]
