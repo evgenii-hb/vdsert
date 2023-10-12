@@ -48,6 +48,10 @@ jobs:
       uses: Gr1N/setup-poetry@v8
       with:
         poetry-version: "1.5.1"
+
+    - name: Build Python package
+      run: |
+        poetry build
     
     - name: Create Github semantic release
       uses: cycjimmy/semantic-release-action@v3
@@ -58,5 +62,3 @@ jobs:
         extra_plugins: |
           @semantic-release/git@10.0.1
           @semantic-release/changelog@6.0.1
-      run: |
-        poetry build
