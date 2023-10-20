@@ -15,9 +15,7 @@ module.exports = {
             ]
         }],
         "@semantic-release/release-notes-generator",
-        ["@semantic-release/github", {
-            "assets": "dist/*"
-        }]
+        "@semantic-release/github"
     ],
     verifyConditions: [
         "@semantic-release/github"
