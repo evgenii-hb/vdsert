@@ -60,6 +60,7 @@ jobs:
       run: poetry build
 
     - name: Upload package to just created release
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file_glob: true
