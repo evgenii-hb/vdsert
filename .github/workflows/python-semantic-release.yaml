@@ -57,7 +57,9 @@ jobs:
         poetry-version: "1.5.1"
 
     - name: Build Python package
-      run: poetry build
+      run: |
+        poetry version ${{ steps.semantic.outputs.new_release_version }}
+        poetry build
 
     - name: Upload package to just created release
       uses: svenstaro/upload-release-action@v2

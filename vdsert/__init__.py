@@ -1,6 +1,8 @@
+import importlib.metadata
+
 import structlog
 
-version = "1.1.0"
+__version__ = importlib.metadata.version(__name__)
 
 
 def foo():
