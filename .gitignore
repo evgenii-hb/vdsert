@@ -1,0 +1,5 @@
+.DS_Store
+ktp*
+poetry.lock
+dist/**
+template*
